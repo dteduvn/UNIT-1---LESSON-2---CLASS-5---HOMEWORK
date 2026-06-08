@@ -848,7 +848,7 @@ function wrSpeak(){SAY(wrW[wrI].sp);}
 function wrClear(){document.getElementById('wr-inp').value='';document.getElementById('wr-inp').className='wr-inp';document.getElementById('wr-fb').textContent='';}
 function wrCheck(){
   if(wrDone)return;const inp=document.getElementById('wr-inp'),typed=inp.value.trim(),ans=wrW[wrI].ans;
-  const norm=s=>s.toLowerCase().replace(/[.!?]$/,'').trim();
+  const norm=s=>s.toLowerCase().replace(/\s+([.!?,])/g,'$1').replace(/[.!?]+$/,'').trim();
   if(norm(typed)===norm(ans)){
     inp.classList.add('ok');inp.classList.remove('bad');
     document.getElementById('wr-fb').innerHTML='<span style="color:var(--ok)">✅ Correct! → '+ans+'</span>';
